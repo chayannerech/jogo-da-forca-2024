@@ -92,13 +92,13 @@ namespace JogoDaForca.ConsoleApp
         static void MostraAtual(char[] mostraTentativa, int numTentativas, char[] historico)
         {
             for (int i = 0; i < mostraTentativa.Length; i++) Console.Write(mostraTentativa[i]);
-            if (numTentativas > 0) Console.Write("\n\n\nHistórico: ");
+            if (numTentativas > 0) Console.Write("\n\nHistórico: ");
             for (int i = 0; i < numTentativas; i++) Console.Write(historico[i]); 
         }
         static void RecebeChute(char[] caracteres, char[] mostraTentativa, ref char[] historico, ref int errou, ref int numErro, ref int numTentativas)
         {
             char tentativa;
-            Console.Write("\n\n\nQual o seu chute? ");
+            Console.Write("\n\nQual o seu chute? ");
             tentativa = char.ToUpper(Convert.ToChar(Console.ReadLine()));
             historico[numTentativas] = tentativa;
             numTentativas++;
