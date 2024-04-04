@@ -7,8 +7,8 @@ namespace JogoDaForca.ConsoleApp
         {
             while (true)
             {
-                string palavraAleatoria; char tentativa; int numErro; char[] caracteres, mostraTentativa;
-                IniciaVariaveis(out palavraAleatoria, out tentativa, out numErro, out caracteres, out mostraTentativa);
+                string palavraAleatoria; char tentativa; int numErro, numTentativas; char[] caracteres, mostraTentativa, historico;
+                IniciaVariaveis(out palavraAleatoria, out tentativa, out numErro, out numTentativas, out historico, out caracteres, out mostraTentativa);
                 while (true)
                 {
                     Console.Clear();
@@ -17,8 +17,8 @@ namespace JogoDaForca.ConsoleApp
 
                     if (numErro == 5) break;
 
-                    MostraAtual(mostraTentativa);
-                    RecebeChute(caracteres, mostraTentativa, ref errou, ref numErro);
+                    MostraAtual(mostraTentativa, numTentativas, historico);
+                    RecebeChute(caracteres, mostraTentativa, ref historico, ref errou, ref numErro, ref numTentativas) ;
 
                     Venceu(palavraAleatoria, tentativa, numErro, mostraTentativa);
                     if (Array.TrueForAll(mostraTentativa, valor => valor != '_')) break;
@@ -26,7 +26,7 @@ namespace JogoDaForca.ConsoleApp
                 if (DeveContinuar()) break;
             }
         }
-        static void IniciaVariaveis(out string palavraAleatoria, out char tentativa, out int numErro, out char[] caracteres, out char[] mostraTentativa)
+        static void IniciaVariaveis(out string palavraAleatoria, out char tentativa, out int numErro, out int numTentativas, out char[] historico, out char[] caracteres, out char[] mostraTentativa)
         {
             Random random = new Random();
 
@@ -34,8 +34,10 @@ namespace JogoDaForca.ConsoleApp
             palavraAleatoria = palavra[random.Next(palavra.Length)];
             tentativa = ' ';
             numErro = 0;
+            numTentativas = 0;
             caracteres = palavraAleatoria.ToCharArray();
             mostraTentativa = new char[caracteres.Length * 2];
+            historico = new char[10];
 
             for (int i = 0; i < mostraTentativa.Length; i++)
             {
@@ -87,15 +89,19 @@ namespace JogoDaForca.ConsoleApp
                     break;
             }
         }
-        static void MostraAtual(char[] mostraTentativa)
+        static void MostraAtual(char[] mostraTentativa, int numTentativas, char[] historico)
         {
             for (int i = 0; i < mostraTentativa.Length; i++) Console.Write(mostraTentativa[i]);
+            if (numTentativas > 0) Console.Write("\n\n\nHistórico: ");
+            for (int i = 0; i < numTentativas; i++) Console.Write(historico[i]); 
         }
-        static void RecebeChute(char[] caracteres, char[] mostraTentativa, ref int errou, ref int numErro)
+        static void RecebeChute(char[] caracteres, char[] mostraTentativa, ref char[] historico, ref int errou, ref int numErro, ref int numTentativas)
         {
             char tentativa;
             Console.Write("\n\n\nQual o seu chute? ");
             tentativa = char.ToUpper(Convert.ToChar(Console.ReadLine()));
+            historico[numTentativas] = tentativa;
+            numTentativas++;
 
             for (int i = 0; i < caracteres.Length; i++)
             {
