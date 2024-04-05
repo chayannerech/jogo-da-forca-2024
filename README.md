@@ -2,7 +2,7 @@
 # Jogo da Forca
 
 <p align="center">
-	<img width="650" src="docs/img/jogo-da-forca.gif">
+	<img width="650" src="docs/img/jogo-da-forca-2.gif">
 </p>
 
 ## Projeto
@@ -16,6 +16,8 @@ O computador escolherá, de maneira aleatória, uma palavra entre várias possibili
 
 Se o jogador chutar 5 letras erradas, ele perde.
 
+Ao final de cada jogo, o computador informa a pontuação do jogador.
+
 ---
 ## Entrada
 
@@ -24,10 +26,13 @@ Os jogadores são solicitados a inserir uma letra por vez através do console. Se 
 ---
 ## Funcionalidades
 
-- __Escolha de Palavra Secreta__: Uma palavra é escolhida aleatoriamente no início de cada jogo.
-- __Representação da Forca__: A forca é desenhada progressivamente no console, com cada erro do jogador.
-- __Feedback Visual__: As letras corretamente adivinhadas são exibidas na posição correta, enquanto as não descobertas permanecem ocultas.
-- __Contagem de Erros__: O jogo acompanha o número de erros cometidos pelo jogador e termina quando o máximo permitido é alcançado.
+- __Escolha de Palavra Secreta__: Uma palavra é escolhida aleatoriamente no início de cada jogo;
+- __Dica__: O jogo conta com uma dica inicial acerca da palavra secreta;
+- __Representação da Forca__: A forca é desenhada progressivamente no console, com cada erro do jogador;
+- __Histórico de Tentativas__: As letras que já foram testadas são visíveis ao usuário;
+- __Feedback Visual__: As letras corretamente adivinhadas são exibidas na posição correta, enquanto as não descobertas permanecem ocultas;
+- __Contagem de Erros__: O jogo acompanha o número de erros cometidos pelo jogador e termina quando o máximo permitido é alcançado;
+- __Pontuação__: Ao final de cada jogo, o computador informa as pontuações anteriores e a pontuação atual do jogador.
 
 ---
 ## Requisitos
